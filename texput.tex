@@ -1,0 +1,205 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "<none>"
+%%% End:
+
+\title{Huffman coding}
+
+\author{Vicente González Ruiz}
+
+\maketitle
+
+\section{\href{https://en.wikipedia.org/wiki/Huffman_coding}{Basics}}
+\begin{itemize}
+  \tightlist
+\item Developed by D. Huffman in 1952~\cite{huffman1952method}.
+\item
+  (Absolute) Optimal performance (in average, better than Shannon-Fano)
+  when a integer number of bits is assigned to each symbol.
+\item
+  Huffman-based VLC codecs build a binary tree where the symbols are
+  stored in the leafs and the distance of each symbol to the root of the
+  tree is \[\lceil\log_2(p(s))\rceil\].
+\item
+  After label each binary branch in the tree, the Huffman code-word for
+  the symbol \(s\) is the sequence of bits (labels) that we must use to
+  travel from the root to the \(s\)-leaf.
+\end{itemize}
+
+\section{Building Huffman trees}
+\begin{enumerate}
+\tightlist
+\item
+  Create a list of nodes. Each node stores a symbol and its probability.
+\item
+  While the number of nodes in the list \textgreater{} 1:
+  \begin{enumerate}
+  \tightlist
+  \item
+    Extract from the list the 2 nodes with the lowest probability.
+  \item
+    Insert in the list a new node (that is the root of a binary tree)
+    whose probability is the sum of the probability of its leafs.
+  \end{enumerate}
+\end{enumerate}
+
+\subsection{Example}
+\img{600}{graphics/huffman_ejemplo.png}
+
+\section{Encoder}
+\begin{enumerate}
+\tightlist
+\item
+  n := \textbar{}C\textbar{};
+\item
+  Q := C;
+\item
+  \textbf{for} i := 1 \textbf{to} n-1 \textbf{do}
+  \begin{enumerate}
+  \setcounter{enumii}{3}
+  \tightlist
+  \item
+    allocate a new node z
+  \item
+    z.left := x := Extract-min(Q);
+  \item
+    z.right := y := Extract-min(Q);
+  \item
+    z.freq := x.freq + y.freq;
+  \item
+    Insert(Q,z);
+  \end{enumerate}
+\item
+  \textbf{end for}
+\item
+  \textbf{return} Extract-min(Q); \{return the root of the tree\}
+\end{enumerate}
+
+\subsection{Example}
+
+String: BACADAEAFABBAAAGAH
+
+\begin{tabular}{ccccccccc}
+  A & B & C & D & E & F & G & H\\
+  \hline
+ Frequency (in thousands) & 50 & 20 & 5 & 5 & 5 & 5 & 5 & 5 \\
+ Fixed-length codeword & 000 & 001 & 010 & 011 & 100 & 101 & 110 & 111 \\
+ Variable-length codeword & 0 & 100 & 1010 & 1011 & 1100 & 1101 & 1110 & 1111
+\end{tabular}
+
+\img{800}{graphics/huffman_encoder.png}
+
+OUTPUT: 10001010010110110001101010010000111001111
+
+\section{Decoder}
+\begin{enumerate}
+\tightlist
+\item
+  prob\_table := freq //Array with the frequency of occurrence of each
+  char
+\item
+  sec := str // Output that we want to rebuild
+\item
+  tree := array //A key-value associating array, with each item's key
+  the node in that subtree and value its current sum probability,
+  according to prob\_table
+\item
+  code\_table := table //An array with length of the how many characters
+  in prob\_table, wich maps each code to its corresponding decoded
+  character with each code initialised as empty strings.
+\item
+  \textbf{while} more than one node in tree \textbf{do} sub\_nodes :=
+  key of node with smallest probability in \emph{tree sec\_sub\_nodes} =
+  key of := key of node with second smallest propability in \emph{tree}
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \setcounter{enumii}{5}
+  \tightlist
+  \item
+    \textbf{for} node in sub\_nodes \textbf{do}
+    \begin{enumerate}
+    \def\labelenumiii{\arabic{enumiii}.}
+    \setcounter{enumiii}{6}
+    \tightlist
+    \item
+      code\_table{[}node{]}.key := ``1'' + code\_table{[}node{]}.key;
+    \end{enumerate}
+  \item
+    \textbf{end for}
+  \item
+    \textbf{for} node in sec\_sub\_nodes \textbf{do}
+
+    \begin{enumerate}
+    \def\labelenumiii{\arabic{enumiii}.}
+    \setcounter{enumiii}{9}
+    \tightlist
+    \item
+      code\_table{[}node{]}.key = ``0'' + code\_table{[}node{]}.key
+    \end{enumerate}
+  \item
+    \textbf{end for}
+  \item
+    tree{[}sub\_nodes + sec\_sub\_nodes{]} := tree{[}sub\_nodes{]} +
+    tree{[}sec\_sub\_nodes{]}
+  \item
+    delete tree{[}sub\_nodes{]}
+  \item
+    delete tree{[}sec\_sub\_nodes{]}
+  \end{enumerate}
+\item
+  \textbf{end while}
+\item
+  temp := ""
+\item
+  result := ""
+\item
+  \textbf{for} code in seq \textbf{do}
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \setcounter{enumii}{18}
+  \tightlist
+  \item
+    temp := temp + code
+  \item
+    \textbf{if} temp in code\_table \textbf{then}
+
+    \begin{enumerate}
+    \def\labelenumiii{\arabic{enumiii}.}
+    \setcounter{enumiii}{20}
+    \tightlist
+    \item
+      result := result + code\_table{[}temp{]}
+    \item
+      temp := ""
+    \end{enumerate}
+  \item
+    \textbf{end if}
+  \end{enumerate}
+\item
+  \textbf{end for}
+\item
+  return result
+\end{enumerate}
+
+\subsection{Example}
+\img{1200}{graphics/huffman_decoder.jpeg}
+INPUT: \textbf{BACADAEAFABBAAAGAH}
+
+\section{Limits}
+\begin{itemize}
+\item
+  Any Huffman code satisfies that \begin{equation}
+    l\big(c(s)\big) = \lceil I(s)\rceil, \tag{Eq:Huffman}
+  \end{equation} where \(l\big(c(s)\big)\) is the length of the
+  code-word assigned to the symbol \(s\). This implies that, with each
+  encoded symbol, up to 1 bit of redundant data can be introduced (think
+  about a very frequent -- high probability -- symbol).
+\item
+  This is a problem that grows when the size of the alphabet is small.
+  In the extreme case, for binary source alphabets, the Huffman coding
+  does not change the length of the original representation.
+\end{itemize}
+
+\bibliography{text-compression}
