@@ -1,1 +1,1 @@
-[Click me](https://rawgit.com/vicente-gonzalez-ruiz/Huffman_Coding/master/index.html).
+[Click me](https://vicente-gonzalez-ruiz.github.io/Huffman_coding/).
