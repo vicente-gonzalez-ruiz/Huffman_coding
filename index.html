@@ -26,21 +26,7 @@ class="ecrm-1200">Vicente Gonz</span><span
 class="ecrm-1200">á</span><span 
 class="ecrm-1200">lez Ruiz</span></div><br />
 <div class="date" ><span 
-class="ecrm-1200">December 30, 2018</span></div>
-   </div>
-   <div class="tableofcontents">
-   <span class="sectionToc" >1 <a 
-href="#x1-10001" id="QQ2-1-1">Basics</a></span>
-<br />   <span class="sectionToc" >2 <a 
-href="#x1-20002" id="QQ2-1-2">Building Huﬀman trees</a></span>
-<br />   <span class="sectionToc" >3 <a 
-href="#x1-40003" id="QQ2-1-4">Encoder</a></span>
-<br />   <span class="sectionToc" >4 <a 
-href="#x1-60004" id="QQ2-1-6">Decoder</a></span>
-<br />   <span class="sectionToc" >5 <a 
-href="#x1-80005" id="QQ2-1-8">Limits</a></span>
-<br />   <span class="likesectionToc" ><a 
-href="#x1-90005" id="QQ2-1-9">References</a></span>
+class="ecrm-1200">May 13, 2019</span></div>
    </div>
    <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
  id="x1-10001"></a><a 
@@ -55,9 +41,6 @@ href="#Xhuffman1952method">1</a>]</span>.
      <li class="itemize">Huﬀman-based VLC codecs build a binary tree where the symbols are
      stored in the leafs and the distance of each symbol to the root of the tree
      is
-                                                                  
-
-                                                                  
 <div class="math-display"><!--l. 22--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="block" ><mrow 
@@ -76,6 +59,9 @@ class="MathClass-close">)</mo></mrow></mrow><mo
 class="MathClass-close">⌉</mo></mrow>
 </mrow></math></div>
      <!--l. 22--><p class="nopar" >.
+                                                                  
+
+                                                                  
      </p></li>
      <li class="itemize">After label each binary branch in the tree, the Huﬀman code-word for the
      symbol <!--l. 25--><math 
@@ -113,9 +99,6 @@ display="inline" ><mrow
    <h4 class="subsectionHead"><span class="titlemark">2.1   </span> <a 
  id="x1-30002.1"></a>Example</h4>
 <!--l. 47--><p class="noindent" > <div style="text-align:center;"> <img width=600 src="graphics/huffman_ejemplo.png" /> </div> 
-                                                                  
-
-                                                                  
 </p><!--l. 49--><p class="noindent" >
 </p>
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
@@ -136,6 +119,9 @@ class="ecbx-1000">do</span>
          <ol  class="enumerate2" >
          <li 
   class="enumerate" id="x1-4008x4">allocate a new node z
+                                                                  
+
+                                                                  
          </li>
          <li 
   class="enumerate" id="x1-4010x5">z.left := x := Extract-min(Q);
@@ -225,9 +211,6 @@ class="td11"> 1111  </td> </tr></table>
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-60004"></a>Decoder</h3>
 <!--l. 95--><p class="noindent" >
-                                                                  
-
-                                                                  
      </p><ol  class="enumerate1" >
      <li 
   class="enumerate" id="x1-6002x1">prob_table := freq //Array with the frequency of occurrence of each char
@@ -236,7 +219,7 @@ class="td11"> 1111  </td> </tr></table>
   class="enumerate" id="x1-6004x2">sec := str // Output that we want to rebuild
      </li>
      <li 
-  class="enumerate" id="x1-6006x3">tree := array //A key-value associating array, with each item’s key the
+  class="enumerate" id="x1-6006x3">tree := array //A key-value associating array, with each item&#x2019;s key the
      node in that subtree and value its current sum probability, according to
      prob_table
      </li>
@@ -244,6 +227,9 @@ class="td11"> 1111  </td> </tr></table>
   class="enumerate" id="x1-6008x4">code_table := table //An array with length of the how many characters in
      prob_table, wich maps each code to its corresponding decoded character
      with each code initialised as empty strings.
+                                                                  
+
+                                                                  
      </li>
      <li 
   class="enumerate" id="x1-6010x5"><span 
@@ -304,9 +290,6 @@ class="ecbx-1000">end while</span>
   class="enumerate" id="x1-6036x9"><span 
 class="ecbx-1000">for </span>code in seq <span 
 class="ecbx-1000">do</span>
-                                                                  
-
-                                                                  
      <!--l. 159--><p class="noindent" >
          </p><ol  class="enumerate2" >
          <li 
@@ -324,6 +307,9 @@ class="ecbx-1000">then</span>
              <li 
   class="enumerate" id="x1-6044x22">temp := &#x0022;&#x0022;</li></ol>
          </li>
+                                                                  
+
+                                                                  
          <li 
   class="enumerate" id="x1-6046x21"><span 
 class="ecbx-1000">end if</span></li></ol>
@@ -370,9 +356,6 @@ class="MathClass-punc">,</mo>
    id="x1-8002r0"  class="label" ></mstyle><!--endlabel-->
 </math></td><td class="eq-no">(Eq:Huﬀman)<a 
  id="x1-8003r0"></a></td></tr></table>
-                                                                  
-
-                                                                  
      <!--l. 195--><p class="noindent" >where <!--l. 195--><math 
  xmlns="http://www.w3.org/1998/Math/MathML"  
 display="inline" ><mrow 
@@ -397,6 +380,9 @@ display="inline" ><mrow
      <li class="itemize">This is a problem that grows when the size of the alphabet is small. In the
      extreme case, for binary source alphabets, the Huﬀman coding does not change
      the length of the original representation.</li></ul>
+                                                                  
+
+                                                                  
 <!--l. 1--><p class="noindent" >
 </p>
    <h3 class="likesectionHead"><a 
