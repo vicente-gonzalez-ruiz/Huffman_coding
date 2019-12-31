@@ -1,13 +1,7 @@
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: "<none>"
-%%% End:
-
 \title{Huffman coding}
-
 \author{Vicente González Ruiz}
-
 \maketitle
+\tableofcontents
 
 \section{\href{https://en.wikipedia.org/wiki/Huffman_coding}{Basics}}
 \begin{itemize}
@@ -44,7 +38,7 @@
 \end{enumerate}
 
 \subsection{Example}
-\imgw{600}{graphics/huffman_ejemplo.png}
+\svgfig{graphics/huffman_ejemplo}{6cm}{600}
 
 \section{Encoder}
 \begin{enumerate}
@@ -87,7 +81,7 @@ String: BACADAEAFABBAAAGAH
  Variable-length codeword & 0 & 100 & 1010 & 1011 & 1100 & 1101 & 1110 & 1111
 \end{tabular}
 
-\imgw{800}{graphics/huffman_encoder.png}
+\pngfig{graphics/huffman_encoder}{8cm}{800}
 
 OUTPUT: 10001010010110110001101010010000111001111
 
@@ -184,7 +178,7 @@ OUTPUT: 10001010010110110001101010010000111001111
 \end{enumerate}
 
 \subsection{Example}
-\imgw{1200}{graphics/huffman_decoder.jpeg}
+\jpgfig{graphics/huffman_decoder}{12cm}{1200}
 INPUT: \textbf{BACADAEAFABBAAAGAH}
 
 \section{Limits}
