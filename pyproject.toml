@@ -21,5 +21,5 @@ classifiers = [
 "Homepage" = "https://github.com/vicente-gonzalez-ruiz/huffman_coding"
 "Bug Tracker" = "https://github.com/vicente-gonzalez-ruiz/huffman_coding/issues"
 
-[tool.hatch.build.targets.wheel]
-packages = ["huffman_coding"]
+#[tool.hatch.build.targets.wheel]
+#packages = ["huffman_coding"]
