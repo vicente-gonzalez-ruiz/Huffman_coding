@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "Huffman_coding"
+name = "huffman_coding"
 version = "0.0.1"
 authors = [
   { name="Vicente González Ruiz", email="vicente.gonzalez.ruiz@gmail.com" },
@@ -18,8 +18,8 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/vicente-gonzalez-ruiz/Huffman_coding"
-"Bug Tracker" = "https://github.com/vicente-gonzalez-ruiz/Huffman_coding/issues"
+"Homepage" = "https://github.com/vicente-gonzalez-ruiz/huffman_coding"
+"Bug Tracker" = "https://github.com/vicente-gonzalez-ruiz/huffman_coding/issues"
 
 [tool.hatch.build.targets.wheel]
 packages = ["huffman_coding"]
