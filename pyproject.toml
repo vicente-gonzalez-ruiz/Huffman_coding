@@ -20,3 +20,6 @@ classifiers = [
 [project.urls]
 "Homepage" = "https://github.com/vicente-gonzalez-ruiz/Huffman_coding"
 "Bug Tracker" = "https://github.com/vicente-gonzalez-ruiz/Huffman_coding/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["huffman_coding"]
